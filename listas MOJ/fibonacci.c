@@ -1,19 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+unsigned long int vetor[81];
+
 long int fibonacci(int n){
-    if (n == 0)
-        return n;
-    else if (n == 1)
-        return n; 
-    else 
-        return fibonacci(n-1) + fibonacci(n-2);
+    if ((n == 1 || n == 2 )){
+        vetor[n]= 1; 
+        return 1; 
+    }
+
+    if(n == 0){
+        return 0; 
+    }
+
+    else (vetor[n] != 0);{
+        vetor[n]= fibonacci(n-2) + fibonacci(n-1);
+    }
+        return vetor[n];
+
 }
-
-
+/*
 int main(){
 
-    int n = 11; 
+    int n;
 
     printf("Digite um numero inteiro: ");
     scanf("%d", &n); 
@@ -22,3 +32,5 @@ int main(){
 
     return 0; 
 }
+
+*/
