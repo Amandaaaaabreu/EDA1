@@ -1,28 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct fila {
+typedef struct fila
+{
     int *dados;
-    int N, p, u;
+    int N;
+    int p;
+    int u;
 } fila;
 
-int enfileira (fila *f, int x) {
-  // Verifica se a fila está cheia
-  if (f->u == f->N) {
-    // Redimensiona o vetor de dados se necessário
-    int *novo_dados = realloc(f->dados, 2 * f->N * sizeof(int));
-    if (novo_dados == NULL) {
-      return 0; // Falha na realocação
+int enfileira(fila *f, int x)
+{
+    if ((f->u + 1) % f->N == f->p) // Cheia
+    {
+        f->dados = realloc(f->dados, 2 * f->N * sizeof(int));
+        if (f->dados == NULL)
+            return 1;
+        for (int i = f->N; i < 2 * f->N; i++)
+            f->dados[i] = 0;
+        if (f->p != 0)
+        {
+            if (f->N - f->p < f->u)
+            {
+                for (int i = f->N - 1; i >= f->p; i--)
+                    f->dados[i + f->N] = f->dados[i];
+                f->p += f->N;
+            }
+            else
+            {
+                for (int i = 0; i < f->u; i++)
+                    f->dados[i + f->N] = f->dados[i];
+                f->u += f->N;
+            }
+        }
+        f->N *= 2;
     }
-
-    // Atualiza os ponteiros e tamanho do vetor
-    f->dados = novo_dados;
-    f->N = 2 * f->N;
-  }
-
-  // Insere o elemento no final da fila
-  f->dados[f->u] = x;
-  f->u = (f->u + 1) % f->N;
-
-  return 1; // Sucesso na inserção
+    f->dados[f->u] = x;
+    f->u = (f->u + 1) % f->N;
+    return 0;
 }

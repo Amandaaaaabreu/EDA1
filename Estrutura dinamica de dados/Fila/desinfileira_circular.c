@@ -2,7 +2,7 @@
 
 typedef struct fila {
     int *dados;
-    int N, p, u;
+    int N, p, u; // p= inicio d afila., u= fim da fila 
 } fila;
 
 int desenfileira(fila *f, int *y) {
@@ -12,7 +12,7 @@ int desenfileira(fila *f, int *y) {
     }
 
     *y = f->dados[f->p];
-    f->p = (f->p + 1) % f->N;
+    f->p = (f->p + 1) % f->N; // A operação % (módulo) é usada para garantir que o índice permaneça dentro dos limites da fila circular.
 
     return 1;
 }
