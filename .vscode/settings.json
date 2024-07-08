@@ -3,6 +3,7 @@
     "files.associations": {
         "stdio.h": "c",
         "stdlib.h": "c",
-        "L.C": "cpp"
+        "L.C": "cpp",
+        "eleições U.R.S.A.L.C": "cpp"
     }
 }
